@@ -55,7 +55,7 @@ class TetrisPane extends JPanel implements KeyListener ,Runnable {
 
     private Server serverO;
 
-    OutputStream out;
+//    OutputStream out;
     /*  宣告背景陣列  */
     public int map[][] = new int[10][20];
     /*  宣告方塊圖片  */
@@ -159,7 +159,7 @@ class TetrisPane extends JPanel implements KeyListener ,Runnable {
                 map[i][j] = 0;
             }
         }
-        deli("@cmd-init");//-----------------------------------------
+//        deli("@cmd-init");//-----------------------------------------
     }
 
     /*  swing用來畫圖的方法,awt中不用重寫方法,但是swing需要重寫*/
@@ -235,7 +235,7 @@ class TetrisPane extends JPanel implements KeyListener ,Runnable {
         turnState = 0;
         x = 4;
         y = 0;
-        deli("next" + Integer.toString(nextblock));//-----------------------------------------
+//        deli("next" + Integer.toString(nextblock));//-----------------------------------------
         System.out.println("@int-" + Integer.toString(nextblock));
         if (gameOver(x, y) == 1) {
 //            deli("gameover");//-----------------------------------------
@@ -257,7 +257,7 @@ class TetrisPane extends JPanel implements KeyListener ,Runnable {
             blockPause++;
         } else if (blow(x, y + 1, blockType, turnState) == 0 && blockPause > 0) {
             setBlock(x, y, blockType, turnState);
-            deli("set");//-----------------------------------------
+//            deli("set");//-----------------------------------------
             for(int i=0;i<10;i++){
 
             }
@@ -377,23 +377,23 @@ class TetrisPane extends JPanel implements KeyListener ,Runnable {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_DOWN:
                 down_Shift();
-                deli("down_shift();");//-----------------------------------------
+//                deli("down_shift();");//-----------------------------------------
                 break;
             case KeyEvent.VK_LEFT:
                 l_Shift();
-                deli("l_Shift();");//-----------------------------------------
+//                deli("l_Shift();");//-----------------------------------------
 
                 break;
             case KeyEvent.VK_RIGHT:
                 r_Shift();
-                deli("r_Shift();");//-----------------------------------------
+//                deli("r_Shift();");//-----------------------------------------
                 break;
             case KeyEvent.VK_UP:
                 roTate();
-                deli("roTate();");//-----------------------------------------
+//                deli("roTate();");//-----------------------------------------
                 break;
             case KeyEvent.VK_SHIFT:
-                deli("hold");//-----------------------------------------
+//                deli("hold");//-----------------------------------------
 
                 if (holdblock >= 0 && changedblock == 1) {
                     int temp;
@@ -418,7 +418,7 @@ class TetrisPane extends JPanel implements KeyListener ,Runnable {
     public void keyReleased(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_SPACE:
-                deli("fall_down();");//-----------------------------------------
+//                deli("fall_down();");//-----------------------------------------
                 fall_down();
                 break;
         }
@@ -433,7 +433,7 @@ class TetrisPane extends JPanel implements KeyListener ,Runnable {
     class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             down_Shift();
-            deli("down_shift();");//-----------------------------------------
+//            deli("down_shift();");//-----------------------------------------
             repaint();
 
         }
@@ -441,12 +441,12 @@ class TetrisPane extends JPanel implements KeyListener ,Runnable {
     /*
     送資料的方法
      */
-    public void deli(String st) {
-        try {
-            out.write(st.getBytes());
-        } catch (Exception e) {
-            System.out.println("this is delivering problem");
-        }
-    }
+//    public void deli(String st) {
+//        try {
+//            out.write(st.getBytes());
+//        } catch (Exception e) {
+//            System.out.println("this is delivering problem");
+//        }
+//    }
 
 }
