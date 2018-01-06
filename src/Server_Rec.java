@@ -22,17 +22,17 @@ public class Server_Rec extends Thread {
         try{
             ipadrs = InetAddress.getLocalHost();
             servSocket = new ServerSocket(socketNum);
+            socket = servSocket.accept();// step 1
         }catch (UnknownHostException e){
-            javax.swing.JOptionPane.showMessageDialog(null,"Error"+e.toString());
+            javax.swing.JOptionPane.showMessageDialog(null,"Error f "+e.toString());
         }catch (IOException ioe){
-            javax.swing.JOptionPane.showMessageDialog(null,"Error"+ioe.toString());
+            javax.swing.JOptionPane.showMessageDialog(null,"Error g "+ioe.toString());
         }catch (Exception yee){
-            javax.swing.JOptionPane.showMessageDialog(null,"Error"+yee.toString());
+            javax.swing.JOptionPane.showMessageDialog(null,"Error h "+yee.toString());
         }
     }
     public void run(){
         try {
-            socket = servSocket.accept();// step 1
             outStream = new PrintStream(socket.getOutputStream());// tep 1
             inputStream = new BufferedReader(new InputStreamReader(socket.getInputStream()));// step 1
             sendToclient("");// step 1
@@ -41,7 +41,7 @@ public class Server_Rec extends Thread {
 
             }
         }catch (Exception e){
-            javax.swing.JOptionPane.showMessageDialog(null,"Error"+e.toString());
+            javax.swing.JOptionPane.showMessageDialog(null,"Error i "+e.toString());
         }
     }
     public void  sendToclient(String command){
@@ -52,7 +52,7 @@ public class Server_Rec extends Thread {
                 System.out.println("87");
             }
         }catch (Exception e){
-            javax.swing.JOptionPane.showMessageDialog(null,"Error"+e.toString());
+            javax.swing.JOptionPane.showMessageDialog(null,"Error j "+e.toString());
         }
     }
 

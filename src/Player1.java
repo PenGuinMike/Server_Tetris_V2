@@ -76,7 +76,7 @@ public class Player1 extends JPanel implements Runnable{
 //            System.out.println("IOException: "+ioe.toString());
 //        }
 
-        rec();//-------------------------------------
+//        rec();//-------------------------------------
         this.setLayout(null);
         this.setBackground(new Color(63, 61, 64));
         /*   指定圖片檔位置   */
@@ -96,7 +96,7 @@ public class Player1 extends JPanel implements Runnable{
             io.printStackTrace();
         }
         /*  初始化背景陣列  */
-        rec();//-------------------------------------
+//        rec();//-------------------------------------
         holdblock=-1;
         /*  宣告Timer  */
     }
@@ -165,7 +165,7 @@ public class Player1 extends JPanel implements Runnable{
         turnState=0;
         x=4;y=0;
         repaint();
-        rec();//-------------------------------------
+//        rec();//-------------------------------------
     }
 
     void deLine() {
@@ -202,7 +202,7 @@ public class Player1 extends JPanel implements Runnable{
             blockPause++;
         } else if (blow(x, y + 1, blockType, turnState) == 0 && blockPause > 0) {
             setBlock(x, y, blockType, turnState);
-            rec();//-------------------------------------
+//            rec();//-------------------------------------
             deLine();
             System.out.println("what");
             down = 0;
@@ -246,7 +246,7 @@ public class Player1 extends JPanel implements Runnable{
     @Override
     public void run() {
         while (true) {
-            rec();//-------------------------------------
+//            rec();//-------------------------------------
             if(delayflag==true){
                 for(int i=0;i<10;i++){
 

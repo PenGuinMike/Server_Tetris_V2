@@ -15,33 +15,41 @@ public class Server extends Thread {
     private BufferedReader inputStream;
     private TetrisPane tp;
     private int socketNum;
+    private Tool tool;
 //    public Server(int num){
     public Server(TetrisPane tp1,int num){
         tp=tp1;
         socketNum=num;
+        System.out.println(socketNum);
+        tool = new Tool();
+//        tool.setVisible(true);
         try{
             ipadrs = InetAddress.getLocalHost();
             servSocket = new ServerSocket(socketNum);
+            tool.addMs("new socket succes"+"\n");
+            socket = servSocket.accept();// step 1
+            tool.addMs("socket accept succes"+"\n");
         }catch (UnknownHostException e){
-            javax.swing.JOptionPane.showMessageDialog(null,"Error"+e.toString());
+            javax.swing.JOptionPane.showMessageDialog(null,"Error a "+e.toString());
         }catch (IOException ioe){
-            javax.swing.JOptionPane.showMessageDialog(null,"Error"+ioe.toString());
+            javax.swing.JOptionPane.showMessageDialog(null,"Error b "+ioe.toString());
         }catch (Exception yee){
-            javax.swing.JOptionPane.showMessageDialog(null,"Error"+yee.toString());
+            javax.swing.JOptionPane.showMessageDialog(null,"Error c "+yee.toString());
         }
     }
     public void run(){
         try {
-            socket = servSocket.accept();// step 1
+//            socket = servSocket.accept();// step 1
+//            tool.addMs("socket accept succes"+"\n");
             outStream = new PrintStream(socket.getOutputStream());// tep 1
             inputStream = new BufferedReader(new InputStreamReader(socket.getInputStream()));// step 1
-            sendToclient("");// step 1
+            sendToclient("test");// step 1
             String str="";
             while (!(str=inputStream.readLine()).equals("")){// step 1
-
+                System.out.println(str);
             }
         }catch (Exception e){
-            javax.swing.JOptionPane.showMessageDialog(null,"Error"+e.toString());
+            javax.swing.JOptionPane.showMessageDialog(null,"Error d "+e.toString());
         }
     }
     public void  sendToclient(String command){
@@ -52,7 +60,7 @@ public class Server extends Thread {
                 System.out.println("87");
             }
         }catch (Exception e){
-            javax.swing.JOptionPane.showMessageDialog(null,"Error"+e.toString());
+            javax.swing.JOptionPane.showMessageDialog(null,"Error e "+e.toString());
         }
     }
 

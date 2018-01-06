@@ -44,10 +44,11 @@ public class Tetris_Frame extends JFrame {
         server2=new Server_Rec(p1,2526);
         Thread thread1 = new Thread(tp);
         Thread thread2=new Thread(p1);
-        thread1.start();
+
         server1.start();
-        thread2.start();
         server2.start();
+        thread1.start();
+        thread2.start();
     }
 }
 
@@ -138,6 +139,7 @@ class TetrisPane extends JPanel implements KeyListener ,Runnable {
             color[7] = ImageIO.read(getClass().getResource("Tetris_image/gray.png"));
         } catch (IOException io) {
             io.printStackTrace();
+//            System.out.println("222222222222222222222");
         }
         /*  不明原因,toolkit的圖片讀取方式不能用*/
 //        backimage1=Toolkit.getDefaultToolkit().getImage("Tetris_image/bg1.png");
