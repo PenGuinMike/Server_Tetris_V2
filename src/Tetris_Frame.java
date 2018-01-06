@@ -14,7 +14,7 @@ public class Tetris_Frame extends JFrame {
     int FrameW=1800,FrameH=900;
     private Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
     public Server server1;
-    public Server_Rec server2;
+//    public Server_Rec server2;
 
     public Tetris_Frame (){
         init();
@@ -33,22 +33,23 @@ public class Tetris_Frame extends JFrame {
 //        server2=new Server(2526);
 
         TetrisPane tp = new TetrisPane(server1);/* TetrisPane是用來畫遊戲畫面的,包括方塊and動作   */
-        Player1 p1=new Player1(server2);
+        Player1 p1=new Player1(server1);
         tp.setBounds(100,80,700,700);
         p1.setBounds(1000,80,700,700);
         tp.setPreferredSize(new Dimension(700,700));
         cp.add(tp);addKeyListener(tp);
         cp.add(p1);
 
-        server1=new Server(tp,2525);
-        server2=new Server_Rec(p1,2526);
+        server1=new Server(tp,p1,2525);
+//        server2=new Server_Rec(p1,2526);
         Thread thread1 = new Thread(tp);
         Thread thread2=new Thread(p1);
 
-        server1.start();
-        server2.start();
+
+//        server2.start();
         thread1.start();
         thread2.start();
+        server1.start();
     }
 }
 
@@ -146,6 +147,7 @@ class TetrisPane extends JPanel implements KeyListener ,Runnable {
 //        backimage2=Toolkit.getDefaultToolkit().getImage("Tetris_image/bg2.png");
         /*  初始化背景陣列  */
         initmap();
+        serverO.sendToclient("hi");
         newBlock();
         holdblock = -1;
 //        nextblock = (int) (Math.random() * 7);

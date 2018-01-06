@@ -14,11 +14,13 @@ public class Server extends Thread {
     private PrintStream outStream;
     private BufferedReader inputStream;
     private TetrisPane tp;
+    private Player1 player1;
     private int socketNum;
     private Tool tool;
-//    public Server(int num){
-    public Server(TetrisPane tp1,int num){
+//    public Server(TetrisPane tp1,int num){
+    public Server(TetrisPane tp1,Player1 p1,int num){
         tp=tp1;
+        player1=p1;
         socketNum=num;
         System.out.println(socketNum);
         tool = new Tool();
@@ -55,7 +57,8 @@ public class Server extends Thread {
     public void  sendToclient(String command){
         try {
             if(outStream != null){
-                outStream.println(command);
+//                outStream.println(command);
+                outStream.write(command.getBytes());
             }else{
                 System.out.println("87");
             }
