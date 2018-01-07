@@ -230,7 +230,7 @@ public class Player1 extends JPanel implements Runnable{
         repaint();
         if (blow(x, y + 1, blockType, turnState) == 0) {
             setBlock(x, y, blockType, turnState);
-            rec();//-------------------------------------
+//            rec();//-------------------------------------
             deLine();
         }
     }
@@ -302,12 +302,12 @@ public class Player1 extends JPanel implements Runnable{
     }
 
 
-    public void rec(){
+    public void rec(String str){
 //    public void rec(String strServ){
-        byte buff[]=new byte[1024];
+//        byte buff[]=new byte[1024];
         try {
-            int n=in.read(buff);
-            String str = new String(buff,0,n);
+//            int n=in.read(buff);
+//            String str = new String(buff,0,n);
             delayflag=true;
             while(str != null){
                 switch (str){
@@ -388,7 +388,7 @@ public class Player1 extends JPanel implements Runnable{
                             changedblock = 0;
                         } else if (changedblock == 1) {
                             holdblock = blockType;
-                            rec();//-------------------------------------
+//                            rec();//-------------------------------------
                         }
                         str=null;
                         break;

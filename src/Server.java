@@ -24,7 +24,7 @@ public class Server extends Thread {
         socketNum=num;
         System.out.println(socketNum);
         tool = new Tool();
-        tool.setVisible(true);
+//        tool.setVisible(true);
         try{
             ipadrs = InetAddress.getLocalHost();
             servSocket = new ServerSocket(socketNum);
@@ -49,6 +49,7 @@ public class Server extends Thread {
             String str="";
             while (!(str=inputStream.readLine()).equals("")){// step 1
                 System.out.println(str);
+                player1.rec(str);
             }
         }catch (Exception e){
             javax.swing.JOptionPane.showMessageDialog(null,"Error d "+e.toString());
@@ -61,7 +62,7 @@ public class Server extends Thread {
 //                outStream.write(command.getBytes());
                 command="";
             }else{
-                System.out.println("Error");
+                System.out.println("Error"+"  command:"+command);
             }
         }catch (Exception e){
             javax.swing.JOptionPane.showMessageDialog(null,"Error e "+e.toString());
