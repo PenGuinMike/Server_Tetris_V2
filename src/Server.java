@@ -61,6 +61,8 @@ public class Server extends Thread {
                 outStream.println(command);
 //                outStream.write(command.getBytes());
                 command="";
+            }else if(outStream == null){
+                System.out.println("Error there is a problem");
             }else{
                 System.out.println("Error"+"  command:"+command);
             }
