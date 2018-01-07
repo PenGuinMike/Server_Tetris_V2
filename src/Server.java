@@ -24,13 +24,13 @@ public class Server extends Thread {
         socketNum=num;
         System.out.println(socketNum);
         tool = new Tool();
-//        tool.setVisible(true);
+        tool.setVisible(true);
         try{
             ipadrs = InetAddress.getLocalHost();
             servSocket = new ServerSocket(socketNum);
             tool.addMs("new socket succes"+"\n");
             socket = servSocket.accept();// step 1
-            tool.addMs("socket accept succes"+"\n");
+//            tool.addMs("socket accept succes"+"\n");
         }catch (UnknownHostException e){
             javax.swing.JOptionPane.showMessageDialog(null,"Error a "+e.toString());
         }catch (IOException ioe){
@@ -42,7 +42,7 @@ public class Server extends Thread {
     public void run(){
         try {
 //            socket = servSocket.accept();// step 1
-//            tool.addMs("socket accept succes"+"\n");
+            tool.addMs("socket accept succes"+"\n");
             outStream = new PrintStream(socket.getOutputStream());// tep 1
             inputStream = new BufferedReader(new InputStreamReader(socket.getInputStream()));// step 1
             sendToclient("test");// step 1
@@ -54,17 +54,22 @@ public class Server extends Thread {
             javax.swing.JOptionPane.showMessageDialog(null,"Error d "+e.toString());
         }
     }
-    public void  sendToclient(String command){
+    public void sendToclient(String command){
         try {
             if(outStream != null){
-//                outStream.println(command);
-                outStream.write(command.getBytes());
+                outStream.println(command);
+//                outStream.write(command.getBytes());
+                command="";
             }else{
-                System.out.println("87");
+                System.out.println("Error");
             }
         }catch (Exception e){
             javax.swing.JOptionPane.showMessageDialog(null,"Error e "+e.toString());
         }
+    }
+
+    public void testFun(){
+        System.out.println("say hello");
     }
 
 }

@@ -15,9 +15,9 @@ public class Tool extends JFrame {
         cp.setLayout(null);
         this.setBounds(200,200,400,600);
         cp.add(jsp);
-        jta.setEditable(false);
+//        jta.setEditable(false);
     }
     public void addMs(String ms){
-        jta.append(ms);
+        jta.append(ms+"\n");
     }
 }
