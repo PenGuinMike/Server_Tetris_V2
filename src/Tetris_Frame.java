@@ -151,8 +151,8 @@ class TetrisPane extends JPanel implements KeyListener ,Runnable {
 //        backimage1=Toolkit.getDefaultToolkit().getImage("Tetris_image/bg1.png");
 //        backimage2=Toolkit.getDefaultToolkit().getImage("Tetris_image/bg2.png");
         /*  初始化背景陣列  */
-        serverO.sendToclient("hi");
-        serverO.sendToclient("hi");
+//        serverO.sendToclient("hi");
+//        serverO.sendToclient("hi");
 
         initmap();
         newBlock();

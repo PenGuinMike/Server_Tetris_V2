@@ -96,7 +96,7 @@ public class Player1 extends JPanel implements Runnable{
             io.printStackTrace();
         }
         /*  初始化背景陣列  */
-//        rec();//-------------------------------------
+
         holdblock=-1;
         /*  宣告Timer  */
     }
@@ -165,7 +165,6 @@ public class Player1 extends JPanel implements Runnable{
         turnState=0;
         x=4;y=0;
         repaint();
-//        rec();//-------------------------------------
     }
 
     void deLine() {
@@ -303,12 +302,9 @@ public class Player1 extends JPanel implements Runnable{
 
 
     public void rec(String str){
-//    public void rec(String strServ){
-//        byte buff[]=new byte[1024];
+
         try {
-//            int n=in.read(buff);
-//            String str = new String(buff,0,n);
-            delayflag=true;
+
             while(str != null){
                 switch (str){
                     case"@cmd-init":

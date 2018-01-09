@@ -17,20 +17,16 @@ public class Server extends Thread {
     private Player1 player1;
     private int socketNum;
     private Tool tool;
-//    public Server(TetrisPane tp1,int num){
+
     public Server(TetrisPane tp1,Player1 p1,int num){
         tp=tp1;
         player1=p1;
         socketNum=num;
         System.out.println(socketNum);
-        tool = new Tool();
-//        tool.setVisible(true);
         try{
             ipadrs = InetAddress.getLocalHost();
             servSocket = new ServerSocket(socketNum);
-            tool.addMs("new socket succes"+"\n");
             socket = servSocket.accept();// step 1
-//            tool.addMs("socket accept succes"+"\n");
         }catch (UnknownHostException e){
             javax.swing.JOptionPane.showMessageDialog(null,"Error a "+e.toString());
         }catch (IOException ioe){
@@ -41,38 +37,40 @@ public class Server extends Thread {
     }
     public void run(){
         try {
-//            socket = servSocket.accept();// step 1
-            tool.addMs("socket accept succes"+"\n");
+            System.out.println(">____________<1");
+
             outStream = new PrintStream(socket.getOutputStream());// tep 1
+
+            System.out.println(">____________<2");
+
             inputStream = new BufferedReader(new InputStreamReader(socket.getInputStream()));// step 1
-            sendToclient("test");// step 1
+
+            System.out.println(">____________<3");
+
             String str="";
-            while (!(str=inputStream.readLine()).equals("")){// step 1
-                System.out.println(str);
+
+            while (true){
+                str=inputStream.readLine();
+                System.out.println("in while "+str);
                 player1.rec(str);
             }
+
         }catch (Exception e){
             javax.swing.JOptionPane.showMessageDialog(null,"Error d "+e.toString());
         }
     }
     public void sendToclient(String command){
         try {
+            outStream = new PrintStream(socket.getOutputStream());
             if(outStream != null){
                 outStream.println(command);
-//                outStream.write(command.getBytes());
-                command="";
-            }else if(outStream == null){
+            }else {
                 System.out.println("Error there is a problem");
-            }else{
-                System.out.println("Error"+"  command:"+command);
             }
         }catch (Exception e){
             javax.swing.JOptionPane.showMessageDialog(null,"Error e "+e.toString());
         }
     }
 
-    public void testFun(){
-        System.out.println("say hello");
-    }
 
 }
