@@ -28,6 +28,7 @@ public class Server_ShowIP  extends JFrame{
         String strIp = ipadrs.getHostAddress();
         this.setTitle("Server's IP");
         this.setLayout(null);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setBounds(dim.width/2-FrameW/2,dim.height/2-FrameH/2,FrameW,FrameH);
         jlbIp = new JLabel(strIp);
         jbtnStart = new JButton("Start");

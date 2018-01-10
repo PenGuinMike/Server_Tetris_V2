@@ -22,6 +22,7 @@ public class Player1 extends JPanel implements Runnable{
     /*  flag判斷方塊是否已放置*/
     private boolean flag = false;
     private int currentblock;
+    private int score=0;
     private boolean delayflag=false;
     /* construct socket  */
     private ServerSocket svs;
@@ -31,6 +32,7 @@ public class Player1 extends JPanel implements Runnable{
     private JLabel jlbHold = new JLabel("HOLD");
     private JLabel jlbNext = new JLabel("NEXT");
     private JLabel jlbLine = new JLabel("Line");
+    private JLabel Linet = new JLabel(Integer.toString(score));
     private JLabel jlbCount = new JLabel("");
 
     private Image [] color = new Image[8];
@@ -96,10 +98,14 @@ public class Player1 extends JPanel implements Runnable{
         jlbCount.setBounds(110,420,200,200);
         jlbCount.setFont(font1);
         jlbCount.setForeground(Color.WHITE);
+        Linet.setBounds(90,480,200,200);
+        Linet.setFont(font1);
+        Linet.setForeground(Color.WHITE);
         this.add(jlbHold);
         this.add(jlbNext);
         this.add(jlbLine);
         this.add(jlbCount);
+        this.add(Linet);
         this.setBackground(new Color(63, 61, 64));
         /*   指定圖片檔位置   */
         try{
@@ -199,7 +205,8 @@ public class Player1 extends JPanel implements Runnable{
                 }
             }
             if (count == 10) {
-                access1 = 1;
+                score++;
+                Linet.setText(Integer.toString(score));
                 for (int j = 0; j < 10; j++) {
                     map[j][i] = 0;
                 }
@@ -408,6 +415,16 @@ public class Player1 extends JPanel implements Runnable{
                             holdblock = blockType;
 //                            rec();//-------------------------------------
                         }
+                        str=null;
+                        break;
+                    case "endding":
+                        javax.swing.JOptionPane.showMessageDialog(null,"the opponent has left,game is over");
+                        System.exit(0);
+                        str=null;
+                        break;
+                    case"cwin":
+                        javax.swing.JOptionPane.showMessageDialog(null,"you lose, bye bye!! ");
+                        System.exit(0);
                         str=null;
                         break;
 //QQ

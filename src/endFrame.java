@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 public class endFrame extends JFrame {
     int FrameW=400,FrameH=330;
     private Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-    private JButton jbtnreStart;
+    private JLabel jbtnreStart;
     private JButton jbtnExit;
     public endFrame (){
         init ();
@@ -16,24 +16,15 @@ public class endFrame extends JFrame {
         this.setTitle("Server_end");
         this.setLayout(null);
         this.setBounds(dim.width/2-FrameW/2,dim.height/2-FrameH/2,FrameW,FrameH);
-        jbtnreStart = new JButton("Restart");
+        jbtnreStart = new JLabel("the game is over");
         jbtnExit = new JButton("Exit");
-        jbtnreStart.setBounds(85,135,85,45);
-        jbtnExit.setBounds(205,135,85,45);
+        jbtnreStart.setBounds(85,85,150,45);
+        jbtnExit.setBounds(105,135,85,45);
         jbtnExit.setOpaque(true);
         jbtnExit.setBackground(new Color(166, 101, 151));
         this.add(jbtnreStart);
         this.add(jbtnExit);
-        jbtnreStart.setEnabled(false);
-        jbtnreStart.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Server_ShowIP ssIp = new Server_ShowIP();
-                ssIp.setVisible(true);
-                endFrame.this.dispose();
-            }
-        });
-
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         jbtnExit.addActionListener(new ActionListener() {
             @Override

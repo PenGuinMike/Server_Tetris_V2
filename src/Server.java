@@ -51,12 +51,8 @@ public class Server extends Thread {
 
             while (true){
                 str=inputStream.readLine();
-                System.out.println("in while "+str);
-                if(str.equals("@cmd-bomb")){
-                    tp.testfun("@cmd-bomb");
-                }else {
-                    player1.rec(str);
-                }
+                player1.rec(str);
+
 
 
             }
