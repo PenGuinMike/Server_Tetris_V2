@@ -28,6 +28,11 @@ public class Player1 extends JPanel implements Runnable{
     private Socket s;
     private InputStream in;
     /*  新增方塊圖片檔*/
+    private JLabel jlbHold = new JLabel("HOLD");
+    private JLabel jlbNext = new JLabel("NEXT");
+    private JLabel jlbLine = new JLabel("Line");
+    private JLabel jlbCount = new JLabel("");
+
     private Image [] color = new Image[8];
     private final int shapes[][][]=new int[][][]{
             // I
@@ -78,6 +83,23 @@ public class Player1 extends JPanel implements Runnable{
 
 //        rec();//-------------------------------------
         this.setLayout(null);
+        Font font1 = new Font(null,Font.BOLD,30);
+        jlbHold.setBounds(10,-50,200,200);
+        jlbHold.setFont(font1);
+        jlbHold.setForeground(Color.WHITE);
+        jlbNext.setBounds(550,-50,200,200);
+        jlbNext.setFont(font1);
+        jlbNext.setForeground(Color.WHITE);
+        jlbLine.setBounds(90,380,200,200);
+        jlbLine.setFont(font1);
+        jlbLine.setForeground(Color.WHITE);
+        jlbCount.setBounds(110,420,200,200);
+        jlbCount.setFont(font1);
+        jlbCount.setForeground(Color.WHITE);
+        this.add(jlbHold);
+        this.add(jlbNext);
+        this.add(jlbLine);
+        this.add(jlbCount);
         this.setBackground(new Color(63, 61, 64));
         /*   指定圖片檔位置   */
         try{

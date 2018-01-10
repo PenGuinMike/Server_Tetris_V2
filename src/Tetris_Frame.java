@@ -1,10 +1,7 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
@@ -16,16 +13,20 @@ public class Tetris_Frame extends JFrame {
     public Server server1;
     public TetrisPane tp;
     public Player1 p1;
+    private Server_ShowIP ssIp;
 //    public Server_Rec server2;
 
-    public Tetris_Frame (){
+    public Tetris_Frame (Server_ShowIP ss){
+        ssIp=ss;
+        ssIp.setVisible(false);
         init();
     }
+
     private void init (){
         this.setTitle("Server");
         this.setBounds(dim.width/2-FrameW/2,dim.height/2-FrameH/2,FrameW,FrameH);
 //        this.setBounds(0,0,FrameW,FrameH);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setResizable(false);
         cp=this.getContentPane();
         cp.setLayout(null);
@@ -54,6 +55,15 @@ public class Tetris_Frame extends JFrame {
         thread1.start();
         thread2.start();
 
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                endFrame ef = new endFrame();
+                ef.setVisible(true);
+                Tetris_Frame.this.dispose();
+//                Tetris_Frame.this.setDefaultCloseOperation(Tetris_Frame.this.EXIT_ON_CLOSE);
+            }
+        });
     }
 }
 
@@ -78,6 +88,11 @@ class TetrisPane extends JPanel implements KeyListener ,Runnable {
     private boolean flag = false;
     private int currentblock;
     /*  新增方塊圖片檔*/
+    private JLabel jlbHold = new JLabel("HOLD");
+    private JLabel jlbNext = new JLabel("NEXT");
+    private JLabel jlbLine = new JLabel("Line");
+    private JLabel jlbCount = new JLabel("");
+
     private Image[] color = new Image[8];
     private final int shapes[][][] = new int[][][]{
             // I
@@ -127,7 +142,25 @@ class TetrisPane extends JPanel implements KeyListener ,Runnable {
 //            System.out.println("this is connectin problem");
 //
 //        }
+
         this.setLayout(null);
+        Font font1 = new Font(null,Font.BOLD,30);
+        jlbHold.setBounds(10,-50,200,200);
+        jlbHold.setFont(font1);
+        jlbHold.setForeground(Color.WHITE);
+        jlbNext.setBounds(550,-50,200,200);
+        jlbNext.setFont(font1);
+        jlbNext.setForeground(Color.WHITE);
+        jlbLine.setBounds(90,380,200,200);
+        jlbLine.setFont(font1);
+        jlbLine.setForeground(Color.WHITE);
+        jlbCount.setBounds(110,420,200,200);
+        jlbCount.setFont(font1);
+        jlbCount.setForeground(Color.WHITE);
+        this.add(jlbHold);
+        this.add(jlbNext);
+        this.add(jlbLine);
+        this.add(jlbCount);
 //        this.setBackground(Color.BLACK);
         this.setBackground(new Color(63, 61, 64));
         try {
@@ -381,7 +414,9 @@ class TetrisPane extends JPanel implements KeyListener ,Runnable {
             }
         }
     }
-
+    public void testfun (String strBomb){
+        System.out.println("It`s Bombs!!!!!!!!!!!!!!!!!!");
+    }
     @Override
     public void keyTyped(KeyEvent e) {
     }
