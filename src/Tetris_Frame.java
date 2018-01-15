@@ -405,7 +405,7 @@ class TetrisPane extends JPanel implements KeyListener ,Runnable {
             if (count == 10) {
                 access1 = 1;
                 score++;
-                if (score>50){
+                if (score>49){
                     javax.swing.JOptionPane.showMessageDialog(this,"you win!!!!!");
                     serverO.sendToclient("swin");
                     System.exit(0);
